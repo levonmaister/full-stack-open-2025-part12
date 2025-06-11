@@ -1,0 +1,17 @@
+Script started on Fri Jun  6 08:11:23 2025
+[1m[7m%[27m[1m[0m                                                                                                                                                             ]7;file://Levons-Laptop.local/Users/levon/Documents/GitHub/part12-containers-applications/script-answers[0m[27m[24m[Jlevon@Levons-Laptop script-answers % [K[?2004hddocker run -it ubuntu bash[?2004l
+[?2004h]0;root@7254a00c7905: /root@7254a00c7905:/# mkdir /usr/src/app/index.js
+[?2004lmkdir: cannot create directory '/usr/src/app/index.js': No such file or directory
+[?2004h]0;root@7254a00c7905: /root@7254a00c7905:/# [Kmkdir /usr/src/app/index.js         
+[?2004l[?2004h]0;root@7254a00c7905: /root@7254a00c7905:/# [Kcd us  /usr/src/app
+[?2004l[?2004h]0;root@7254a00c7905: /usr/src/approot@7254a00c7905:/usr/src/app# touch index.js
+[?2004l[?2004h]0;root@7254a00c7905: /usr/src/approot@7254a00c7905:/usr/src/app# exit
+[?2004lexit
+[1m[7m%[27m[1m[0m                                                                                                                                                             ]7;file://Levons-Laptop.local/Users/levon/Documents/GitHub/part12-containers-applications/script-answers[0m[27m[24m[Jlevon@Levons-Laptop script-answers % [K[?2004h[?2004l
+
+Saving session...
+...copying shared history...
+...saving history...truncating history files...
+...completed.
+
+Script done on Fri Jun  6 08:12:27 2025
