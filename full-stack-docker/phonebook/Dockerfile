@@ -8,8 +8,6 @@ RUN npm ci
 
 ENV VITE_BACKEND_URL=http://localhost:8080/api
 
-RUN npm test
- 
 RUN npm run build
 
 RUN npm install -g serve

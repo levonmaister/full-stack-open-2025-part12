@@ -1,17 +1,14 @@
 services:
   app:
-    image: hello-front-dev
+    image: frontend-fs12
     build:
       context: ./todo-frontend/. # The context will pick this directory as the "build context"
       dockerfile: Dockerfile # This will simply tell which dockerfile to read
-    volumes:
-      - ./todo-frontend/:/usr/src/app # The path can be relative, so ./ is enough to say "the same location as the docker-compose.yml"
-    container_name: hello-front-dev # This will name the container hello-front-dev
+    container_name: frontend-production # This will name the container hello-front-dev
     environment: 
       - VITE_BACKEND_URL=http://localhost:8080/api
     depends_on:
       - backend # wait for the backend container to be started
-
 
 
   nginx:
@@ -26,7 +23,17 @@ services:
       - backend # wait for the backend container to be started
 
 
-
+  backend:
+    image: backend-fs
+    build:
+      context: ./todo-backend/
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_URL=mongodb://the_username:the_password@mongo:27017/the_database
+      - REDIS_URL=redis://redis:6379
+    depends_on:
+      - mongo
+      - redis
   mongo:
     image: initialized-mongo
     environment:
@@ -41,22 +48,10 @@ services:
     command: ['redis-server', '--appendonly', 'yes']
     volumes:
       - ./redis_data:/data
-  backend:
-    image: backend-fs-dev
-    build:
-      context: ./todo-backend/
-      dockerfile: Dockerfile
-    volumes:
-      - ./todo-backend/:/usr/src/app
-    environment:
-      - MONGO_URL=mongodb://the_username:the_password@mongo:27017/the_database
-      - REDIS_URL=redis://redis:6379
-    depends_on:
-      - mongo
-      - redis
-    
+
 
 volumes:
   mongo_data:
   redis_data:
-  backend_data:
+
+  

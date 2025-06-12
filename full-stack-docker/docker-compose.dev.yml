@@ -1,0 +1,35 @@
+services:
+  app:
+    image: phonebook-frontend-dev
+    build:
+      context: ./phonebook
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./phonebook/:/usr/src/app
+    container_name: phonebook-frontend-dev
+    environment:
+      - VITE_BACKEND_URL=http://localhost:8080/api
+    depends_on:
+      - backend
+
+  backend:
+    image: phonebook-backend-dev
+    build:
+      context: ./phonebook-backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./phonebookbackend/:/usr/src/app
+    container_name: phonebook-backend-dev
+    environment:
+      - PORT=3000
+
+  nginx:
+    image: nginx:1.20.1
+    volumes:
+      - ./nginx.dev.conf:/etc/nginx/nginx.conf:ro
+    ports:
+      - 8080:80
+    container_name: reverse-proxy
+    depends_on:
+      - app # wait for the frontend container to be started
+      - backend # wait for the backend container to be started
